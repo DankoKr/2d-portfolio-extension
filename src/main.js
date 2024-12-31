@@ -23,7 +23,11 @@ kaboomContext.scene("main", async () => {
   const mapData = await (await fetch("./map.json")).json();
   const layers = mapData.layers;
 
-  const map = kaboomContext.add([kaboomContext.sprite("map"), kaboomContext.pos(0), kaboomContext.scale(scaleFactor)]);
+  const map = kaboomContext.add([
+    kaboomContext.sprite("map"),
+    kaboomContext.pos(0),
+    kaboomContext.scale(scaleFactor),
+  ]);
 
   const player = kaboomContext.make([
     kaboomContext.sprite("spritesheet", { anim: "idle-down" }),
@@ -47,7 +51,11 @@ kaboomContext.scene("main", async () => {
       for (const boundary of layer.objects) {
         map.add([
           kaboomContext.area({
-            shape: new kaboomContext.Rect(kaboomContext.vec2(0), boundary.width, boundary.height),
+            shape: new kaboomContext.Rect(
+              kaboomContext.vec2(0),
+              boundary.width,
+              boundary.height
+            ),
           }),
           kaboomContext.body({ isStatic: true }),
           kaboomContext.pos(boundary.x, boundary.y),
@@ -139,11 +147,10 @@ kaboomContext.scene("main", async () => {
   });
 
   function stopAnims() {
-    if(player.direction === "down"){
+    if (player.direction === "down") {
       player.play("idle-down");
       return;
-    }
-    else if (player.direction === "up"){
+    } else if (player.direction === "up") {
       player.play("idle-up");
       return;
     }
@@ -156,7 +163,6 @@ kaboomContext.scene("main", async () => {
   kaboomContext.onKeyRelease(() => {
     stopAnims();
   });
-
 
   kaboomContext.onKeyDown((key) => {
     const keyMap = [

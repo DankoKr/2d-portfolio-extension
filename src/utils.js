@@ -2,7 +2,7 @@ export function displayDialogue(text, onDisplayEnd) {
   const dialogueUI = document.getElementById("textbox-container");
   const dialogue = document.getElementById("dialogue");
   const closeBtn = document.getElementById("close");
-  const kaboomCanvas = document.querySelector("game");
+  const kaboomCanvas = document.querySelector("canvas");
 
   dialogueUI.style.display = "block";
   let index = 0;
@@ -16,6 +16,15 @@ export function displayDialogue(text, onDisplayEnd) {
       return;
     }
     clearInterval(intervalRef);
+
+    const links = dialogue.querySelectorAll("a");
+    links.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.open(link.href, "_blank");
+        kaboomCanvas.focus();
+      });
+    });
   }, 10);
 
   function onCloseBtnClick() {
@@ -42,7 +51,6 @@ export function displayDialogue(text, onDisplayEnd) {
   addEventListener("keydown", onKeyDown);
 }
 
-  
 export function setCamScale(k) {
   const resizeFactor = k.width() / k.height();
   if (resizeFactor < 1) {

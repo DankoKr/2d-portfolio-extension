@@ -53,3 +53,25 @@ body {
   flex-direction: column;
   color: rgb(238, 238, 238);
 }
+
+@media (max-width: 768px) {
+  #dialogue {
+    font-size: 1.5rem;
+  }
+
+  #close {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #dialogue {
+    font-size: 1rem;
+  }
+
+  #close {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+}
